@@ -58,18 +58,18 @@ RUN addgroup --gid 1000 discourse \
  && sed -i 's/\/home\/discourse/\/var\/discourse/g' ./config/puma.rb \
  && bundle config build.nokogiri --use-system-libraries \
  && bundle install --deployment --verbose --without test --without development --retry 3 --jobs 4 \
- && bundle exec rake plugin:install plugin=discourse-solved \
- && bundle exec rake plugin:install plugin=discourse-voting \
- && bundle exec rake plugin:install plugin=discourse-assign \
- && bundle exec rake plugin:install plugin=discourse-locations \
- && bundle exec rake plugin:install plugin=discourse-events \
- && bundle exec rake plugin:install plugin=discourse-question-answer \
- && bundle exec rake plugin:install plugin=discourse-ratings \
- && bundle exec rake plugin:install plugin=discourse-whos-online \
- && bundle exec rake plugin:install plugin=discourse-tooltips \
- && bundle exec rake plugin:install plugin=discourse-topic-previews \
- && bundle exec rake plugin:install plugin=discourse-layouts \
- && bundle exec rake plugin:install plugin=discourse-formatting-toolbar
+ && bundle exec rake plugin:update plugin=discourse-solved \
+ && bundle exec rake plugin:update plugin=discourse-voting \
+ && bundle exec rake plugin:update plugin=discourse-assign \
+ && bundle exec rake plugin:update plugin=discourse-locations \
+ && bundle exec rake plugin:update plugin=discourse-events \
+ && bundle exec rake plugin:update plugin=discourse-question-answer \
+ && bundle exec rake plugin:update plugin=discourse-ratings \
+ && bundle exec rake plugin:update plugin=discourse-whos-online \
+ && bundle exec rake plugin:update plugin=discourse-tooltips \
+ && bundle exec rake plugin:update plugin=discourse-topic-previews \
+ && bundle exec rake plugin:update plugin=discourse-layouts \
+ && bundle exec rake plugin:update plugin=discourse-formatting-toolbar
 
 RUN find /var/discourse/discourse/vendor/bundle -name tmp -type d -exec rm -rf {} +
 
