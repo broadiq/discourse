@@ -99,7 +99,7 @@ fi
 
 
 bundle exec rake db:migrate
-bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
+#bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
 #ps aux | grep discourse
 bundle exec rails server -b 0.0.0.0
 

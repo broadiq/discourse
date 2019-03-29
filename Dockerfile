@@ -82,8 +82,13 @@ ADD init.sh /var/discourse/discourse
 RUN chmod +x  /var/discourse/discourse/init.sh
 RUN chown -R discourse:discourse /var/discourse/discourse/init.sh
 
-Add build-static.sh /var/discourse/discourse
+ADD build-static.sh /var/discourse/discourse
 RUN chmod +x /var/discourse/discourse/build-static.sh
+
+RUN apt-get install -y systemd
+ADD discourse-sidekiq.service /etc/systemd/system
+
+
 
 ENV RAILS_ENV=production
 
