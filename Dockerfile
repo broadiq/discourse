@@ -85,10 +85,21 @@ RUN chown -R discourse:discourse /var/discourse/discourse/init.sh
 ADD build-static.sh /var/discourse/discourse
 RUN chmod +x /var/discourse/discourse/build-static.sh
 
+RUN apt-get install -y sudo 
+RUN usermod -aG sudo discourse
+RUN echo "discourse ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
 RUN apt-get install -y systemd
 ADD discourse-sidekiq.service /etc/systemd/system
 
+ADD checkSidekiq.sh /var/discourse/discourse/ 
+RUN chmod +x  /var/discourse/discourse/checkSidekiq.sh
+RUN chown -R discourse:discourse /var/discourse/discourse/checkSidekiq.sh
 
+
+#ADD crontab /etc/cron.d/sidekiq-task
+#RUN chmod 0644 /etc/cron.d/sidekiq-task
+#RUN service cron start
 
 ENV RAILS_ENV=production
 
@@ -96,7 +107,7 @@ RUN /var/discourse/discourse/build-static.sh
 
 RUN chown -R discourse:discourse /var/discourse/discourse
 
-USER discourse
+#USER discourse
 
 EXPOSE 3000
 

@@ -100,6 +100,10 @@ fi
 
 bundle exec rake db:migrate
 #bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
+
+nohup /var/discourse/discourse/checkSidekiq.sh &
+
+#ps -efa | grep sidekiq |grep -v 'grep ' | awk '{print $8}'
 #ps aux | grep discourse
 bundle exec rails server -b 0.0.0.0
 
