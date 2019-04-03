@@ -13,7 +13,7 @@ do
   if ps ax | grep -v grep | grep $SERVICE > /dev/null
   then
         echo "$SERVICE service running, everything is fine"
-	i=20
+	#i=20
   else
         echo "$SERVICE is not running"
 	bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
