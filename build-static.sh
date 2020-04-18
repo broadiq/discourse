@@ -29,6 +29,11 @@ echo "db_socket = ''" >> config/discourse.conf
 #echo "redis_port = '30956'" >> config/discourse.conf
 
 
+echo "refresh_maxmind_db_during_precompile_days = 30" >> config/discourse.conf
+echo "maxmind_license_key = '8W8ANZGm2KzvODR8'" >> config/discourse.conf
+
+
+
 
 bundle exec rake db:migrate
 bundle exec rake assets:precompile
